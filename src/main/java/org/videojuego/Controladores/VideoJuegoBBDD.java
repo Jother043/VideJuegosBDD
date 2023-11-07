@@ -96,8 +96,14 @@ public class VideoJuegoBBDD {
                     sb.append("ID usuario: " + idUsuario1 + ", ");
                     juegoSelect.setString(1, idVideoJuego);
                     ResultSet rs3 = juegoSelect.executeQuery();
-                    nombreJuego = rs3.getString(1);
-                    sb.append("Nombre juego: " + nombreJuego + " ");
+                    if (rs3.next()) {
+                        nombreJuego = rs3.getString(1);
+                        sb.append("Nombre juego: " + nombreJuego + ", ");
+                    }else {
+                        System.err.println("Error al obtener el nombre del juego, no existe.");
+                    }
+                }else{
+                    System.err.println("Error al obtener las observaciones del usuario, no existen.");
                 }
             }
         }
